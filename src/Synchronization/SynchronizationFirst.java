@@ -1,6 +1,6 @@
-package MultiThreading;
+package Synchronization;
 
-public class SynchronizationSecond {
+public class SynchronizationFirst {
 
     private int count = 0;
 

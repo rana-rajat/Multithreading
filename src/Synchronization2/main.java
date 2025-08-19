@@ -1,4 +1,4 @@
-package multithreading2;
+package Synchronization2;
 
 public class main {
     public static void main(String[] args) {

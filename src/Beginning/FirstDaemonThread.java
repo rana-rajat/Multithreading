@@ -1,4 +1,4 @@
-package MultiThreading;
+package Beginning;
 
 public class FirstDaemonThread extends Thread {
     @Override

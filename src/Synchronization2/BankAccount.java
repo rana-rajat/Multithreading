@@ -1,4 +1,4 @@
-package multithreading2;
+package Synchronization2;
 
 //Locks in multithreading
 public class BankAccount {

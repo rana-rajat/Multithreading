@@ -1,12 +1,12 @@
-package MultiThreading;
+package Synchronization;
 
 public class ThirdClass {
 
     public static void main(String[] args) {
-        SynchronizationSecond sc = new SynchronizationSecond();
+        SynchronizationFirst sc = new SynchronizationFirst();
 
-        ThreadClass t1 = new ThreadClass(sc);
-        ThreadClass t2 = new ThreadClass(sc);
+        SynchronizationSecond t1 = new SynchronizationSecond(sc);
+        SynchronizationSecond t2 = new SynchronizationSecond(sc);
         t1.start();
         t2.start();
         try {
