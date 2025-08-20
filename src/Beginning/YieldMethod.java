@@ -13,7 +13,7 @@ public class YieldMethod extends Thread{
         YieldMethod t1 = new YieldMethod();
         YieldMethod t2 = new YieldMethod();
         t1.start();
-        t1.setDaemon(true); // for daemon
+       // t1.setDaemon(true); // for daemon
         t2.start();
     }
 }
