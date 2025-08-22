@@ -1,7 +1,6 @@
 package Synchronization;
 
 public class ThirdClass {
-
     public static void main(String[] args) {
         SynchronizationFirst sc = new SynchronizationFirst();
 

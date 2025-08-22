@@ -1,4 +1,4 @@
-package Synchronization2;
+package Locks;
 
 public class main {
     public static void main(String[] args) {
@@ -9,8 +9,11 @@ public class main {
               account.wihtdraw(50);
             }
         };
-        Thread t1 = new Thread("MyThread1");
-        Thread t2 = new Thread("MyThread2");
+        Thread t1 = new Thread(task,"MyThread1");
+        Thread t2 = new Thread(task,"MyThread2");
+
+        t1.start();
+        t2.start();
     }
 
 }
