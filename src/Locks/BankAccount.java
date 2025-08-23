@@ -15,20 +15,25 @@ public class BankAccount {
         try {
             if (lock.tryLock(1000, TimeUnit.MILLISECONDS)) {
                 if (balacne >= amount) {
-                    try{
+                    try {
                         System.out.println(Thread.currentThread().getName() + " proceeding with the withdrawal");
                         Thread.sleep(3000);
                         balacne -= amount;
-                        System.out.println(Thread.currentThread().getName() + " Completed with the Withdrawal" + balacne);
-                    }catch (Exception e){
-                        System.out.println("Interested ");
+                        System.out.println(Thread.currentThread().getName() + " Completed with the Withdrawal " + balacne);
+                    } catch (Exception e) {
+                        Thread.currentThread().interrupt();
+                    } finally {
+                        lock.unlock();
                     }
                 } else {
                     System.out.println(Thread.currentThread().getName());
                 }
+            } else {
+                System.out.println(Thread.currentThread().getName() + " Could not acquire the lock, will try again later ");
             }
         } catch (Exception e) {
-
+            Thread.currentThread().interrupt();
+            System.out.println("Got the Exception " + e);
         }
     }
 }
