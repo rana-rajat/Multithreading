@@ -3,7 +3,7 @@ package Locks;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ReetrantExample {
+public class ThirdReetrantExample {
 
     private final Lock lock = new ReentrantLock();
 
@@ -27,7 +27,7 @@ public class ReetrantExample {
     }
 
     public static void main(String[] args) {
-        ReetrantExample rt = new ReetrantExample();
+        ThirdReetrantExample rt = new ThirdReetrantExample();
         rt.outerMethod();
     }
 }
