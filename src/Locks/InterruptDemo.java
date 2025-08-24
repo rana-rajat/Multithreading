@@ -32,6 +32,6 @@ public class InterruptDemo {
         }
 
         System.out.println("Main thread sending interrupt signal...");
-    //    worker.interrupt(); // <--- THIS is the thread that interrupts
+        worker.interrupt(); // <--- THIS is the thread that interrupts
     }
 }
