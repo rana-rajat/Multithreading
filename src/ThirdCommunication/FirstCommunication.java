@@ -9,7 +9,7 @@ class SharedResource {
     public synchronized void produce(int value) {
         while (hasData) {
             try {
-                wait();  // if data already present, producer waits
+                wait();  // if data already present producer releases the lock and goes into waiting state more exp below
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -75,3 +75,16 @@ public class FirstCommunication {
         consumerThread.start();
     }
 }
+//hasData == true, producer releases the lock and goes into waiting state.
+//It stays there indefinitely until some other thread (consumer) calls notify() or notifyAll().
+//When notify() happens, the producer thread is moved from "waiting" → "ready-to-run", but…
+//It still has to re-acquire the lock (synchronized object monitor) before continuing.
+// Once it gets the lock back, the loop condition is checked again: while (hasData)
+//If still true, it waits again.
+//•	If false, the loop ends, and the flow goes tohasData == true, producer releases the lock and goes into waiting state.
+//It stays there indefinitely until some other thread (consumer) calls notify() or notifyAll().
+//When notify() happens, the producer thread is moved from "waiting" → "ready-to-run", but…
+//It still has to re-acquire the lock (synchronized object monitor) before continuing.
+// Once it gets the lock back, the loop condition is checked again: while (hasData)
+//If still true, it waits again.
+//•	If false, the loop ends, and the flow goes to
