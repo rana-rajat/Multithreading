@@ -1,6 +1,6 @@
 package ExecutorFramework;
 
-public class Main {
+public class FirstExample {
     public static int factorial(int n) {
         int count = 1;
         for (int i = 1; i < n; i++) {
@@ -13,7 +13,7 @@ public class Main {
         }
         return count;
     }
-
+// we are manually doing thread creation and no use of already created threads
     public static void main(String[] args) {
         //without multi
         for (int i = 1; i < 10; i++) {
@@ -38,6 +38,7 @@ public class Main {
             }
         }
         // without threading taking 9 seconds now its taking only 1 second
+        // without join the below print ln will start before thread starts
         System.out.println("Total Time " + (System.currentTimeMillis() - startTime));
     }
 }
