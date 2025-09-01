@@ -2,10 +2,7 @@ package ExecutorFramework;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class FifthInvokeMethod {
     public static void main(String[] args) throws Exception {
@@ -31,7 +28,8 @@ public class FifthInvokeMethod {
 
         // Submit all tasks together using invokeAll()
         List<Future<Integer>> futures = executorService.invokeAll(list);
-
+        // Also the same method with diff signature
+        // executorService.invokeAll(list,1, TimeUnit.SECONDS);
         // Retrieve results
         for (Future<Integer> future : futures) {
             System.out.println("Result: " + future.get());
