@@ -13,5 +13,7 @@ public class SeventhScheduledExecutorService {
         // Also we have
         ScheduledExecutorService scheduler2 = Executors.newScheduledThreadPool(1);
         scheduler.scheduleAtFixedRate(()-> System.out.println("Task Executed Every five second"),2,3,TimeUnit.SECONDS);
+        scheduler.shutdown();
+        scheduler2.shutdown();
     }
 }
