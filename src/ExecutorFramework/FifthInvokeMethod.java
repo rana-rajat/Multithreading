@@ -30,6 +30,8 @@ public class FifthInvokeMethod {
         List<Future<Integer>> futures = executorService.invokeAll(list);
         // Also the same method with diff signature
         // executorService.invokeAll(list,1, TimeUnit.SECONDS);
+        // invoke any method return the thread which runs first and don't return future returns the integer value
+        Integer i = executorService.invokeAny(list);
         // Retrieve results
         for (Future<Integer> future : futures) {
             System.out.println("Result: " + future.get());
