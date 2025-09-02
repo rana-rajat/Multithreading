@@ -3,24 +3,45 @@ package ExecutorFramework;
 import java.util.concurrent.*;
 
 public class SixthSecondFutureMethod {
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        // Submit a Callable task
         Future<Integer> future = executorService.submit(() -> {
             try {
-                Thread.sleep(200);
+                Thread.sleep(2000); // Simulate work
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Task was interrupted", e);
             }
             return 42;
         });
-        //Also, we have future cancel if we want to cancel the execution for somehow then we can cancel with the method below
-        //in below method there will be two scenarios if the above thread is running or not
 
+        // Main thread also waits for 1 second
+        try {
+            Thread.sleep(1000); // Ensures the Callable is already finished
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Attempt to cancel the task
+        // cancel(true)  -> tries to interrupt if still running
+        // cancel(false) -> will not interrupt if already running
         future.cancel(false);
-        future.get();
-        // future.cancel(true); remember this run's in the main method so it can run before and after the thread
-        System.out.println(future.isCancelled()); // this return true when only future.cancel method call not depend on what we give inside it true or false or cancel it
-        System.out.println(future.isDone()); // this returns true when somewhere future method is call to execute some method
 
+        try {
+            // After cancellation, calling get() will throw CancellationException
+            Integer result = future.get();
+            System.out.println("Task result: " + result);
+        } catch (InterruptedException | ExecutionException | CancellationException e) {
+            System.out.println("Exception while retrieving future result: " + e);
+        }
+
+        // Future state checks
+        System.out.println("Is Cancelled? " + future.isCancelled());
+        // true only if cancel() succeeded before completion
+        System.out.println("Is Done? " + future.isDone());
+        // true if the task completed, failed, or was cancelled
+
+        executorService.shutdown();
     }
 }
