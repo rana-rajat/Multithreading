@@ -13,10 +13,11 @@ public class SixthSecondFutureMethod {
             } catch (InterruptedException e) {
                 throw new RuntimeException("Task was interrupted", e);
             }
+            System.out.println("Checking if codes comes here ");
             return 42;
         });
 
-        // Main thread also waits for 1 second
+        // Main thread also waits for 1 second to run the above thread otherwise main thread run before external or above thread
         try {
             Thread.sleep(1000); // Ensures the Callable is already finished
         } catch (InterruptedException e) {
