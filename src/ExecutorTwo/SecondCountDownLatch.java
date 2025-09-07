@@ -22,7 +22,7 @@ public class SecondCountDownLatch {
         executorService.submit(new DependentService(latch));
 
         // Main thread waits here until all services finish (count reaches zero)
-        latch.await(5, TimeUnit.SECONDS); // Correct method to block the main thread also we can also apply time here so its wait for that time and then main thread starts
+        latch.await(5, TimeUnit.SECONDS); // block the main thread also we can also apply time here so its wait for that time and then main thread starts
 
         // Once all dependent services are finished, main thread resumes
         System.out.println("Main Thread continues after all services are done");
