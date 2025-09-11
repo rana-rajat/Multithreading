@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class FirstPredicate {
     public static void main(String[] args) {
@@ -32,7 +33,7 @@ public class FirstPredicate {
         System.out.println("Using identity in Function " + apply);
 
         // Now we have consumer which consumes only and don't return only consumes
-        Consumer<Integer> consume = x -> System.out.println("Testing Consumer "+ x);
+        Consumer<Integer> consume = x -> System.out.println("Testing Consumer " + x);
         consume.accept(5);
 
         List<Integer> list = Arrays.asList(1, 2, 3);
@@ -42,5 +43,19 @@ public class FirstPredicate {
             }
         };
         cd.accept(list);
+
+        //Supplier is just opposite of consumer it supplies the value and don't take any value
+        Supplier<String> supply = () -> "Hello World";
+        System.out.println(supply.get());
+
+        //Combined example of all
+        Predicate<Integer> predicate = x -> x % 2 == 0;
+        Function<Integer, Integer> function = x -> x * x;
+        Consumer<Integer> consumer = x -> System.out.println(x);
+        Supplier<Integer> supplier = () -> 100;
+
+        if (predicate.test(supplier.get())) {
+            consumer.accept(function.apply(supplier.get()));
+        }
     }
 }
