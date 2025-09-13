@@ -69,7 +69,7 @@ public class FirstPredicate {
         biFunction.apply("rajah", "rana");
 
         //We have Unary Operator it is work like when you have argument pass and return type are same like we use in function
-        // so we can write one time instead of write two time  in unary
+        // so we can write one time instead of write two time  in unary which have parameter and return type is same
         UnaryOperator<Integer> unaryOperator = x -> x * x;
         System.out.println("Using Unary Operator " + unaryOperator.apply(5));
 
@@ -79,7 +79,7 @@ public class FirstPredicate {
 
         //Method Reference -> we can use methods without invoking and in place of lambda expression
         List<String> list1 = Arrays.asList("Ram", "Shyam", "Kam");
-        list1.forEach(x-> System.out.println(x));
+        list1.forEach(x -> System.out.println(x));
         list1.forEach(System.out::println);
 
         //Constructor reference
@@ -89,7 +89,8 @@ public class FirstPredicate {
         List<MobilePhone> collect2 = list2.stream().map(MobilePhone::new).toList();
     }
 }
-class MobilePhone{
+
+class MobilePhone {
     String name;
 
     public MobilePhone(String x) {
