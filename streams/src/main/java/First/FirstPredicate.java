@@ -2,10 +2,8 @@ package First;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
+import java.util.stream.Collectors;
 
 public class FirstPredicate {
     public static void main(String[] args) {
@@ -57,5 +55,43 @@ public class FirstPredicate {
         if (predicate.test(supplier.get())) {
             consumer.accept(function.apply(supplier.get()));
         }
+
+        // BiPredicate, BiFunction, BiConsumer
+        BiPredicate<Integer, Integer> isSumEven = (x, y) -> (x + y) % 2 == 0;
+        isSumEven.test(2, 6);
+
+        BiConsumer<Integer, String> biConsumer = (x, y) -> {
+            System.out.println(x);
+            System.out.println(y);
+        };
+
+        BiFunction<String, String, Integer> biFunction = (x, y) -> (x + y).length();
+        biFunction.apply("rajah", "rana");
+
+        //We have Unary Operator it is work like when you have argument pass and return type are same like we use in function
+        // so we can write one time instead of write two time  in unary
+        UnaryOperator<Integer> unaryOperator = x -> x * x;
+        System.out.println("Using Unary Operator " + unaryOperator.apply(5));
+
+        //Binary Operator it is same as BiFunction, but it takes two argument and return type is same as argument
+        BinaryOperator<Integer> binaryOperator = (x, y) -> x + y;
+        System.out.println("Using Binary Operator " + binaryOperator.apply(5, 10));
+
+        //Method Reference -> we can use methods without invoking and in place of lambda expression
+        List<String> list1 = Arrays.asList("Ram", "Shyam", "Kam");
+        list1.forEach(x-> System.out.println(x));
+        list1.forEach(System.out::println);
+
+        //Constructor reference
+        List<String> list2 = Arrays.asList("A", "B", "C", "D");
+        //stream we can convert a collection into stream and map lega kuch or fir dega
+        List<MobilePhone> collect = list2.stream().map(x -> new MobilePhone(x)).collect(Collectors.toList());
+        List<MobilePhone> collect2 = list2.stream().map(MobilePhone::new).toList();
+    }
+}
+class MobilePhone{
+    String name;
+
+    public MobilePhone(String x) {
     }
 }
