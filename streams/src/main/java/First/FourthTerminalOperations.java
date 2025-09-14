@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FourthTerminalOperations {
     //as we know without terminal operation stream don't work
@@ -34,6 +34,14 @@ public class FourthTerminalOperations {
         System.out.println(list.stream().findFirst().get());
         System.out.println(list.stream().findAny().get());
 
+        //6. toArray -> when you want to convert any stream into Array
+        Object[] array = Stream.of(1, 2, 3, 4, 5).toArray();
+
+        //7. min/max
+        System.out.println("max " + Stream.of(4, 5, 6, 3, 8, 34, 6, 43, 2, 4).max(Comparator.naturalOrder()));
+        System.out.println("min " + Stream.of(4, 5, 6, 3, 8, 34, 6, 43, 2, 4).max((o1, o2) -> o2 - o1)); // yha bhe minimum he aayega kyuki
+        // list descending order m ho jaayegi or sab se last number 2 hoga the use 01 -o2 for max
+
         //Examples
         List<String> list1 = Arrays.asList("Anaa", "BoB", "Charlie", "David");
         System.out.println("trying " + list1.stream().filter(x -> x.length() > 3).toList());
@@ -54,5 +62,11 @@ public class FourthTerminalOperations {
 
         List<Integer> integers1 = Arrays.asList(1, 2, 3, 4, 3, 2, 5, 6, 7);
         System.out.println("Yhe le " + integers1.stream().filter(x -> x == 3).count());
+
+        //Example
+        //streams cannot be used after a terminal operation has been called and give exception
+        Stream<String> st = list1.stream();
+        st.forEach(System.out::println);
+        st.map(String::toUpperCase).toList();//exception because terminal operation was already used before
     }
 }

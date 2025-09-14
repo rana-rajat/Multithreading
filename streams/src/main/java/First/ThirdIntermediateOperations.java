@@ -26,10 +26,32 @@ public class ThirdIntermediateOperations {
         System.out.println(list.stream().filter(x -> x.startsWith("A")).distinct().count());
 
         //Limit
-        System.out.println(Stream.iterate(1,x->x+1).limit(100).count());
+        System.out.println(Stream.iterate(1, x -> x + 1).limit(100).count());
 
         //Skip -> it will skip the first 10 now in the below ex
-        System.out.println(Stream.iterate(1,x->x+1).skip(10).limit(100).count());
+        System.out.println(Stream.iterate(1, x -> x + 1).skip(10).limit(100).count());
+
+        //peak -> Performs an action on each element as it is consumed bascially in middle when you want to perform something
+        Stream.iterate(1, x -> x + 1).skip(10).limit(100).peek(System.out::println).count();
+
+        //flatMap -> Handle stream of collections, lists, arrays where each element is itself a collection
+        // flatten nested structured (eg. list within lists) so that they can be processed as a single sequence of elements
+        //transform and flatten at the same time
+
+        List<List<String>> listOfList = Arrays.asList(
+                Arrays.asList("apple", "banana"),
+                Arrays.asList("orange", "kiwi"),
+                Arrays.asList("pear", "grape")
+        );
+        System.out.println(listOfList.get(1).get(1));//this is basic
+        System.out.println(listOfList.stream().flatMap(x -> x.stream()).map(String::toUpperCase).toList());
+
+        List<String> stringList = Arrays.asList(
+                "Hello World",
+                "Java Streams are Powerful",
+                "flatmap are powerful"
+        );
+        System.out.println(stringList.stream().flatMap(sentence -> Arrays.stream(sentence.split(" "))).map(String::toLowerCase).toList());
 
     }
 }
