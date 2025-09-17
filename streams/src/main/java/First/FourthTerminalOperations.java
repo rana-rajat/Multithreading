@@ -42,6 +42,13 @@ public class FourthTerminalOperations {
         System.out.println("min " + Stream.of(4, 5, 6, 3, 8, 34, 6, 43, 2, 4).max((o1, o2) -> o2 - o1)); // yha bhe minimum he aayega kyuki
         // list descending order m ho jaayegi or sab se last number 2 hoga the use 01 -o2 for max
 
+        //8. forEachOrdered
+        List<Integer> integers2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+        System.out.println("using for each for parallel stream");
+        integers2.parallelStream().forEach(System.out::println);
+        System.out.println("using for each Ordered for parallel stream");
+        integers2.parallelStream().forEachOrdered(System.out::println);
+
         //Examples
         List<String> list1 = Arrays.asList("Anaa", "BoB", "Charlie", "David");
         System.out.println("trying " + list1.stream().filter(x -> x.length() > 3).toList());
