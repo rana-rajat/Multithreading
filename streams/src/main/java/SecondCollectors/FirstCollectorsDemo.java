@@ -69,9 +69,35 @@ public class FirstCollectorsDemo {
 
         //Example 3.Partitioning even and odd numbers
         List<Integer> integersNew = Arrays.asList(2, 3, 4, 7, 11);
-        System.out.println("Partitioning even and odd numbers "+integersNew.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0)));
+        System.out.println("Partitioning even and odd numbers " + integersNew.stream().collect(Collectors.partitioningBy(x -> x % 2 == 0)));
 
-        //Example 4.Summing value in a Map
+        //Example 4.Reverse a string by loop
+        String yhele = "Mohan";
+        String[] splitted = yhele.split("");
+        int start = 0;
+        int end = yhele.length() - 1;
+        while (start < end) {
+            String temp = splitted[start];
+            splitted[start] = splitted[end];
+            splitted[end] = temp;
+            start++;
+            end--;
+
+        }
+        String join = String.join("", splitted);
+        System.out.println("Printing the Reverse "+join);
+
+        //Example 5.Summing Values in a Map
+        Map<String, Integer> items = new HashMap<>();
+        items.put("Apple", 10);
+        items.put("Banana", 20);
+        items.put("Orange", 15);
+        System.out.println(items.values().stream().reduce(Integer::sum));
+        System.out.println(items.values().stream().collect(Collectors.summingInt(x->x)));
+
+        //6. Create a map from Stream Elements
+        List<String> lt = Arrays.asList("Anaa", "BoB", "Charlie", "David");
+        System.out.println("Checking "+lt.stream().collect(Collectors.groupingBy(x->x,HashMap::new,Collectors.counting())));
 
     }
 }
