@@ -98,6 +98,11 @@ public class FirstCollectorsDemo {
         //6. Create a map from Stream Elements
         List<String> lt = Arrays.asList("Anaa", "BoB", "Charlie", "David");
         System.out.println("Checking "+lt.stream().collect(Collectors.groupingBy(x->x,HashMap::new,Collectors.counting())));
+        System.out.println("Using to map counting the word length of each "+lt.stream().collect(Collectors.toMap(String::toUpperCase, String::length)));
+
+        //7. Merge
+        List<String> list3 = Arrays.asList(" Apple ", " Banana ", " Guava ", "Orange ", "Apple ");
+        System.out.println("Using merge function "+ list3.stream().collect(Collectors.toMap(l->l , v-> 1 ,(x,y )->x+y)));
 
     }
 }
