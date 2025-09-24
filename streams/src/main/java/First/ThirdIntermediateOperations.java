@@ -16,7 +16,7 @@ public class ThirdIntermediateOperations {
 
         //2 Operation or Map
         System.out.println(list.stream().map(x -> x.toLowerCase()).toList());
-        System.out.println(list.stream().map(String::toLowerCase));
+        System.out.println(list.stream().map(String::toLowerCase).toList());
 
         //3 Sorted
         Stream<String> sorted = list.stream().sorted();
