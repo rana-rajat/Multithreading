@@ -1,6 +1,7 @@
 package First;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -45,6 +46,7 @@ public class ThirdIntermediateOperations {
         );
         System.out.println(listOfList.get(1).get(1));//this is basic
         System.out.println(listOfList.stream().flatMap(x -> x.stream()).map(String::toUpperCase).toList());
+        System.out.println(listOfList.stream().flatMap(Collection::stream).map(String::toUpperCase).toList());
 
         List<String> stringList = Arrays.asList(
                 "Hello World",
