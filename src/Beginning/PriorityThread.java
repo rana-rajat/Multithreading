@@ -18,7 +18,7 @@ public class PriorityThread extends Thread{
      PriorityThread thread3 = new PriorityThread("High Priority");
      thread2.setPriority(Thread.NORM_PRIORITY);
      thread1.setPriority(Thread.MIN_PRIORITY);
-     thread2.setPriority(Thread.MAX_PRIORITY);
+     thread3.setPriority(Thread.MAX_PRIORITY);
      thread1.start();
      thread2.start();
      thread3.start();

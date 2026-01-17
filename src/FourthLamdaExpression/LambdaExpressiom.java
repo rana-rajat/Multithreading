@@ -10,10 +10,11 @@ public class LambdaExpressiom {
         //we can also created the thread without creating implementation as we're doing earlier
         Thread th = new Thread(() -> {
             for (int i = 0; i <= 10; i++) {
-
+                System.out.println("Lambda Thread: " + i);
             }
         });
         Thread bhai = new Thread(task1);
         bhai.start();
+        th.start();
     }
 }
