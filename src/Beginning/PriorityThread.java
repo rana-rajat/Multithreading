@@ -12,7 +12,7 @@ public class PriorityThread extends Thread{
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
      PriorityThread thread1 = new PriorityThread("Low Priority");
      PriorityThread thread2 = new PriorityThread("Medium Priority");
      PriorityThread thread3 = new PriorityThread("High Priority");
@@ -22,5 +22,8 @@ public class PriorityThread extends Thread{
      thread1.start();
      thread2.start();
      thread3.start();
+     thread2.join();
+     thread3.join();
+     thread1.join();
     }
 }
