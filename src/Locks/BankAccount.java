@@ -6,20 +6,20 @@ import java.util.concurrent.locks.ReentrantLock;
 
 //Locks in multithreading
 public class BankAccount {
-    private int balacne = 100;
+    private int balacne = 150;
 
     private final Lock lock = new ReentrantLock();
 
     public void wihtdraw(int amount) {
         System.out.println(Thread.currentThread().getName() + " is attempting to withdraw " + amount);
         try {
-            if (lock.tryLock(1000, TimeUnit.MILLISECONDS)) {
+            if (lock.tryLock(3000, TimeUnit.MILLISECONDS)) {
                 if (balacne >= amount) {
                     try {
                         System.out.println(Thread.currentThread().getName() + " proceeding with the withdrawal");
-                        Thread.sleep(3000);
+                        Thread.sleep(2000);
                         balacne -= amount;
-                        System.out.println(Thread.currentThread().getName() + " Completed with the Withdrawal " + balacne);
+                        System.out.println(Thread.currentThread().getName() + " Completed with the Withdrawal and remaining balance is :" + balacne);
                     } catch (Exception e) {
                         Thread.currentThread().interrupt();
                     } finally {

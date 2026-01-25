@@ -1,7 +1,7 @@
 package Locks;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         BankAccount account = new BankAccount();
         Runnable task = new Runnable() {
             @Override
